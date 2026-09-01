@@ -34,12 +34,14 @@ This setup provides a self-hosted, web-based Enpass interface accessible from an
 ## Quick Start & Setup
 
 1. **Clone the repository:**
-   ```git clone https://github.com/qwer-tzy/enpass-web-arm64.git
+   ```
+   git clone https://github.com/qwer-tzy/enpass-web-arm64.git
    cd enpass-web-arm64
    ```
 
 2. **Build and start the container:**
-   ```docker compose up -d --build
+   ```
+   docker compose up -d --build
    ```
    *(Note: The initial build compiles Box64 from source and may take 5–15 minutes depending on your CPU).*
 
@@ -56,12 +58,14 @@ This setup provides a self-hosted, web-based Enpass interface accessible from an
 Because Enpass and its dependencies are fetched during the build process, updating the application to the latest version simply requires rebuilding the container image without altering your cached compilation steps:
 
 1. **Rebuild the image:**
-   ```docker compose build
+   ```
+   docker compose build
    ```
    *(Docker will reuse the cached Box64 layer, so updating Enpass usually takes only 15–30 seconds).*
 
 2. **Restart the container:**
-   ```docker compose up -d
+   ```
+   docker compose up -d
    ```
 
 ---
@@ -91,7 +95,8 @@ Modern web browsers require a **secure context (HTTPS)** to allow direct access 
 ### Custom SSL Certificates
 If you want to use custom certificates (e.g., Let's Encrypt / Certbot) without a reverse proxy, mount your certificate files into the `./config` directory and set the following environment variables in `docker-compose.yml`:
 
-```environment:
+```
+   environment:
       - SSL_CERTIFICATE_FILE=/config/certs/fullchain.pem
       - SSL_KEY_FILE=/config/certs/privkey.pem
 ```
@@ -102,10 +107,12 @@ If you want to use custom certificates (e.g., Let's Encrypt / Certbot) without a
 
 * **Blank Black Screen:** If the window was accidentally closed or minimized, simply refresh the browser tab (**F5**). The autostart hook will automatically restore or launch Enpass.
 * **Force Window Restore (CLI):** If Enpass is running in the background but invisible, run:
-  ```docker exec -d -e DISPLAY=:1 enpass-web /usr/local/bin/start-enpass.sh
+  ```
+  docker exec -d -e DISPLAY=:1 enpass-web /usr/local/bin/start-enpass.sh
   ```
 * **Restart Process:** To kill and re-launch Enpass without restarting the entire container:
-  ```docker exec enpass-web pkill -f Enpass
+  ```
+  docker exec enpass-web pkill -f Enpass
   ```
 
 ---
