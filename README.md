@@ -39,13 +39,19 @@ This setup provides a self-hosted, web-based Enpass interface accessible from an
    cd enpass-web-arm64
    ```
 
-2. **Build and start the container:**
+2. **Create your .env file and fill in your values:**
+   ```bash
+   mv .env.example .env
+   $EDITOR .env
+   ```
+
+3. **Build and start the container:**
    ```bash
    docker compose up -d --build
    ```
    *(Note: The initial build compiles Box64 from source and may take 5–15 minutes depending on your CPU).*
 
-3. **Access & Initial Enpass Setup:**
+4. **Access & Initial Enpass Setup:**
    * Open your browser and navigate to:
      * **HTTP:** `http://:3000`
      * **HTTPS:** `https://:3001`
