@@ -1,0 +1,17 @@
+services:
+  enpass-web:
+    build: .
+    container_name: enpass-web
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=${ENPASS_WEB_PUID}
+      - PGID=${ENPASS_WEB_PGID}
+      - TZ=${ENPASS_WEB_TZ}
+      - TITLE=Enpass
+    volumes:
+      - ${ENPASS_WEB_APP_PATH}:/config
+    ports:
+      - "3000:3000"   # use for http
+      - "3001:3001"   # use for https
+    restart: unless-stopped
